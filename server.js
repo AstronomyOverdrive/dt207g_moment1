@@ -25,7 +25,18 @@ connection.addListener("error", (error) => {
 
 // Routing
 app.get("/", async(req, res) => {
-	res.render("index");
+	// Run SQL query
+	const sql = "SELECT * FROM `courses` ORDER BY `name`";
+	connection.execute(sql, (error, rows, fields) => {
+		if (error instanceof Error) {
+			console.log(error);
+			return;
+		}
+		// Render view
+		res.render("index", {
+			courses: rows
+		});
+	});
 });
 
 // Start server

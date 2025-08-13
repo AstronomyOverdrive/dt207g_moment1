@@ -11,6 +11,22 @@
 		</header>
 
 		<main>
+			<table>
+				<tr>
+					<th>Kurskod</th>
+					<th>Kursnamn</th>
+					<th>Progression</th>
+				</tr>
+				<!-- EJS -->
+				<% courses.forEach(course => { %>
+				<tr>
+					<td><a target="_blank" href="<%= course.syllabus %>"><%= course.code %></a></td>
+					<td><%= course.name %></td>
+					<td><%= course.progression %></td>
+				</tr>
+				<% }) %>
+				<!-- -->
+			</table>
 		</main>
 
 		<footer>
