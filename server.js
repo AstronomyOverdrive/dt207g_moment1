@@ -24,6 +24,7 @@ connection.addListener("error", (error) => {
 });
 
 // Routing
+// Startpage
 app.get("/", async(req, res) => {
 	// Run SQL query
 	const sql = "SELECT * FROM `courses` ORDER BY `name`";
@@ -38,6 +39,35 @@ app.get("/", async(req, res) => {
 		});
 	});
 });
+
+// Add course page
+app.get("/add", async(req, res) => {
+	res.render("addcourse");
+});
+app.post("/add", async(req, res) => {
+	const newCourse = {
+		code: req.body.code,
+		name: req.body.name,
+		syllabus: req.body.syllabus,
+		progression: req.body.progression
+	};
+	if (isCourseValid(newCourse)) {
+		const sql = "INSERT INTO `courses` (`code`, `name`, `syllabus`, `progression`) VALUES (?, ?, ?, ?)";
+		const values = [newCourse.code, newCourse.name, newCourse.syllabus, newCourse.progression];
+		connection.execute(sql, values, (error, result, fields) => {
+			if (error instanceof Error) {
+				console.log(error);
+				return;
+			}
+			res.redirect("/");
+		});
+	}
+});
+
+// Validate
+function isCourseValid(course) {
+	return true;
+}
 
 // Start server
 app.listen(process.env.PORT, () => {
