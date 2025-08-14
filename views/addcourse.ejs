@@ -15,20 +15,37 @@
 				<fieldset>
 					<legend>Lägg till kurs</legend>
 					<label for="code">Kurscode: </label>
-					<input type="text" id="code" name="code" placeholder="DT000G" required><br>
+					<input type="text" id="code" name="code" placeholder="DT000G" value="<%= fillForm.code %>" required><br>
 					<label for="name">Kursnamn: </label>
-					<input type="text" id="name" name="name" placeholder="Webbutveckling" required><br>
+					<input type="text" id="name" name="name" placeholder="Webbutveckling" value="<%= fillForm.name %>" required><br>
 					<label for="progression">Progression</label>
-					<input type="text" id="progression" name="progression" placeholder="A" required><br>
+					<input type="text" id="progression" name="progression" placeholder="A" value="<%= fillForm.progression %>" required><br>
 					<label for="syllabus">Kursplan</label>
-					<input type="text" id="syllabus" name="syllabus" placeholder="https://www.miun.se/utbildning/kursplaner-och-utbildningsplaner/DT000G/" required><br>
+					<input type="text" id="syllabus" name="syllabus" placeholder="https://www.miun.se/utbildning/kursplaner-och-utbildningsplaner/DT000G/" value="<%= fillForm.syllabus %>" required><br>
 					<input type="submit" value="Lägg till">
-					<input type="reset" value="Nollställ">
+					<input type="button" id="reset" value="Nollställ">
+					<div id="error-box"><%- errorMsg %></div>
 				</fieldset>
 			</form>
 		</main>
 
 		<footer>
 		</footer>
+		<script>
+			const resetBtn = document.getElementById("reset");
+			const courseCode = document.getElementById("code");
+			const courseName = document.getElementById("name");
+			const courseProg = document.getElementById("progression");
+			const courseSyll = document.getElementById("syllabus");
+
+			resetBtn.addEventListener("click", clearFields);
+
+			function clearFields() {
+				courseCode.value = "";
+				courseName.value = "";
+				courseProg.value = "";
+				courseSyll.value = "";
+			}
+		</script>
 	</body>
 </html>

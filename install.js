@@ -56,3 +56,5 @@ sqlCommands.forEach(command => {
 		console.log(fields);
 	});
 });
+
+connection.end();

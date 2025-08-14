@@ -37,6 +37,7 @@ app.get("/", async(req, res) => {
 	connection.execute(sql, (error, rows, fields) => {
 		if (error instanceof Error) {
 			console.log(error);
+			res.render("dberror");
 			return;
 		}
 		// Render view
@@ -48,7 +49,15 @@ app.get("/", async(req, res) => {
 
 // Add course page
 app.get("/add", async(req, res) => {
-	res.render("addcourse");
+	res.render("addcourse", {
+		errorMsg: "",
+		fillForm: {
+			code: "",
+			name: "",
+			progression: "",
+			syllabus: ""
+		}
+	});
 });
 app.post("/add", async(req, res) => {
 	const newCourse = {
@@ -57,16 +66,28 @@ app.post("/add", async(req, res) => {
 		syllabus: req.body.syllabus,
 		progression: req.body.progression
 	};
-	if (isCourseValid(newCourse)) {
+	const errorMsg = isCourseValid(newCourse);
+	if (errorMsg === "") {
 		const sql = "INSERT INTO `courses` (`code`, `name`, `syllabus`, `progression`) VALUES (?, ?, ?, ?)";
 		const values = [newCourse.code, newCourse.name, newCourse.syllabus, newCourse.progression];
 		connection.execute(sql, values, (error, result, fields) => {
 			if (error instanceof Error) {
 				console.log(error);
+				res.render("dberror");
 				return;
 			}
 			getPrimaryKeys(); // Update PK array
 			res.redirect("/");
+		});
+	} else {
+		res.render("addcourse", {
+			errorMsg: errorMsg,
+			fillForm: {
+				code: newCourse.code,
+				name: newCourse.name,
+				progression: newCourse.progression,
+				syllabus: newCourse.syllabus
+			}
 		});
 	}
 });
@@ -81,7 +102,7 @@ function getPrimaryKeys() {
 		}
 		primaryKeys = [];
 		rows.forEach(row => {
-			primaryKeys.push(row.code);
+			primaryKeys.push(row.code.toLowerCase());
 		});
 	});
 }
@@ -92,31 +113,27 @@ function isCourseValid(course) {
 	// Check for empty entries
 	Object.keys(course).forEach(key => {
 		if (course[key].replaceAll(" ", "") === "") {
-			problems += "\nTomt fält.";
+			problems += "Tomt fält.<br>";
 		}
 	});
 	// Check for too long entries
 	if (course.code.length > 6) {
-		problems += `\n${course.code} överstiger 6 karaktärer.`;
+		problems += `Kurskod "${course.code}" överstiger 6 karaktärer.<br>`;
 	}
 	if (course.name.length > 50) {
-		problems += `\n${course.name} överstiger 50 karaktärer.`;
+		problems += `Kursnamn "${course.name}" överstiger 50 karaktärer.<br>`;
 	}
 	if (course.progression.length > 1) {
-		problems += `\n${course.progression} överstiger 1 karaktärer.`;
+		problems += `Progression "${course.progression}" överstiger 1 karaktär.<br>`;
 	}
 	if (course.syllabus.length > 100) {
-		problems += `\n${course.syllabus} överstiger 100 karaktärer.`;
+		problems += `Kursplan "${course.syllabus}" överstiger 100 karaktärer.<br>`;
 	}
 	// Check if course code is unique
-	if (primaryKeys.includes(course.code)) {
-		problems += `\nKurskod "${course.code}" finns redan i databasen.`;
+	if (primaryKeys.includes(course.code.toLowerCase())) {
+		problems += `Kurskod "${course.code}" finns redan i databasen.<br>`;
 	}
-	if (problems === "") {
-		return true;
-	} else {
-		return false;
-	}
+	return problems;
 }
 
 // Start server
