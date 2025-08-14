@@ -1,0 +1,176 @@
+body {
+	margin: 0;
+	font-family: sans-serif;
+	font-size: 1.3rem;
+	background: #6272a4;
+	color: #f8f8f2;
+	/* Space for the footer: */
+	min-height: calc(100vh - 3rem);
+	position: relative;
+	padding-bottom: 3rem;
+}
+
+header,
+footer {
+	background: #282a36;
+	text-align: center;
+}
+
+/* Header */
+h1 {
+	margin: 0;
+	padding: 1rem;
+}
+
+/* Nav menu */
+ul {
+	background: #44475a;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	list-style-type: none;
+}
+li {
+	font-size: 1.5rem;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+	width: 11%;
+	min-width: 10ch;
+	text-align: center;
+}
+li:nth-child(odd) {
+	border-left: 2px solid black;
+	border-right: 2px solid black;
+}
+#active {
+	background: #353848;
+}
+li > a {
+	color: #f8f8f2;
+}
+
+/* Footer */
+footer {
+	height: 3rem;
+	width: 100%;
+	line-height: 3rem;
+	position: absolute;
+	bottom: 0;
+}
+
+/* Startpage */
+table,
+td,
+th {
+	border: 1px solid;
+}
+table {
+	border-collapse: collapse;
+	margin-top: 2rem;
+	margin-bottom: 2rem;
+}
+th {
+	padding: 0.5rem;
+	background: #282a36;
+	word-wrap: break-word;
+}
+td {
+	text-align: center;
+	padding: 0.2rem;
+	word-wrap: break-word;
+	font-size: 1.3rem;
+}
+tr:nth-child(odd) {
+	background: #44475a;
+}
+tr:nth-child(even) {
+	background: #353848;
+}
+td > a {
+	color: #8be9fd;
+	text-decoration: none;
+}
+td input {
+	font-weight: bold;
+	font-size: 1.3rem;
+	color: #ff5555;
+	background: none;
+	border: none;
+	cursor: pointer;
+}
+
+/* Add course page */
+fieldset {
+	border-radius: 1rem;
+	padding: 2rem;
+	margin-top: 2rem;
+	margin-bottom: 2rem;
+	background: #282a36;
+}
+input::placeholder {
+	color: #6272a4;
+}
+fieldset input {
+	padding: 0.5rem;
+	margin: 0.2rem;
+	border-radius: 0.5rem;
+	background: none;
+	border-color: #f8f8f2;
+	color: #f8f8f2;
+	font-size: 1rem;
+}
+fieldset input[type=text] {
+	width: calc(100% - 2rem);
+	margin-bottom: 1rem;
+}
+fieldset input[type=submit],
+fieldset input[type=button] {
+	background: #44475a;
+	margin-top: 1rem;
+}
+fieldset input[type=submit] {
+	color: #50fa7b;
+}
+fieldset input[type=button],
+#error-box {
+	color: #ff5555;
+}
+#error-box {
+	margin-top: 1rem;
+}
+
+/* Error page */
+h2 {
+	text-align: center;
+	font-size: 5rem;
+}
+
+/* Responsive design */
+@media only screen and (orientation: landscape) {
+	/* Startpage */
+	table {
+		table-layout: auto;
+		width: 70%;
+		margin-left: 15%;
+	}
+	/* Add course page */
+	fieldset {
+		width: calc(50% - 4rem);
+		margin-left: 25%;
+	}
+}
+@media only screen and (orientation: portrait) {
+	/* Startpage */
+	table {
+		table-layout: fixed;
+		width: 100%;
+		margin-left: 0;
+	}
+	/* Add course page */
+	fieldset {
+		width: calc(90% - 4rem);
+		margin-left: 5%;
+	}
+}

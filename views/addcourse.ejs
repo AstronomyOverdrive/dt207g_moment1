@@ -8,30 +8,48 @@
 	</head>
 	<body>
 		<header>
+			<h1>DT207G Moment 1</h1>
+			<nav>
+				<ul>
+					<li>
+						<a href="/">Startsida</a>
+					</li>
+					<li id="active">
+						Lägg till
+					</li>
+					<li>
+						<a href="/about">Om</a>
+					</li>
+				</ul>
+			</nav>
 		</header>
 
 		<main>
 			<form method="post">
 				<fieldset>
 					<legend>Lägg till kurs</legend>
-					<label for="code">Kurscode: </label>
+					<!-- EJS -->
+					<label for="code">Kurskod: </label>
 					<input type="text" id="code" name="code" placeholder="DT000G" value="<%= fillForm.code %>" required><br>
 					<label for="name">Kursnamn: </label>
 					<input type="text" id="name" name="name" placeholder="Webbutveckling" value="<%= fillForm.name %>" required><br>
-					<label for="progression">Progression</label>
+					<label for="progression">Progression:</label>
 					<input type="text" id="progression" name="progression" placeholder="A" value="<%= fillForm.progression %>" required><br>
-					<label for="syllabus">Kursplan</label>
+					<label for="syllabus">Kursplan:</label>
 					<input type="text" id="syllabus" name="syllabus" placeholder="https://www.miun.se/utbildning/kursplaner-och-utbildningsplaner/DT000G/" value="<%= fillForm.syllabus %>" required><br>
 					<input type="submit" value="Lägg till">
 					<input type="button" id="reset" value="Nollställ">
 					<div id="error-box"><%- errorMsg %></div>
+					<!-- End EJS -->
 				</fieldset>
 			</form>
 		</main>
 
 		<footer>
+			2025 William Pettersson
 		</footer>
 		<script>
+			"use strict";
 			const resetBtn = document.getElementById("reset");
 			const courseCode = document.getElementById("code");
 			const courseName = document.getElementById("name");
