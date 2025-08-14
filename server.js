@@ -7,7 +7,7 @@ require("dotenv").config();
 const app = express();
 app.set("view engine", "ejs");
 app.use(express.static("public"));
-app.use(express.urlencoded({extended: true}))
+app.use(express.urlencoded({extended: true}));
 
 // Array with PKs, to minimize on queries
 let primaryKeys = [];
@@ -90,6 +90,21 @@ app.post("/add", async(req, res) => {
 			}
 		});
 	}
+});
+
+// Delete course from database
+app.post("/delete", async(req, res) => {
+	const sql = "DELETE FROM `courses` WHERE `code` = ?";
+	const values = [req.body.code];
+	connection.execute(sql, values, (error, rows, fields) => {
+		if (error instanceof Error) {
+			console.log(error);
+			res.render("dberror");
+			return;
+		}
+		getPrimaryKeys(); // Update PK array
+		res.redirect("/");
+	});
 });
 
 // Get stored PKs

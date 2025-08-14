@@ -16,6 +16,7 @@
 					<th>Kurskod</th>
 					<th>Kursnamn</th>
 					<th>Progression</th>
+					<th>Ta bort</th>
 				</tr>
 				<!-- EJS -->
 				<% courses.forEach(course => { %>
@@ -23,6 +24,12 @@
 					<td><a target="_blank" href="<%= course.syllabus %>"><%= course.code %></a></td>
 					<td><%= course.name %></td>
 					<td><%= course.progression %></td>
+					<td>
+						<form method="post" action="/delete">
+							<input type="text" name="code" value="<%= course.code %>" style="display: none;">
+							<input type="submit" class="delete-post" value="X">
+						</form>
+					</td>
 				</tr>
 				<% }) %>
 				<!-- -->
