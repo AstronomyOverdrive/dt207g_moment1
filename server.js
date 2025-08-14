@@ -91,6 +91,10 @@ app.post("/add", async(req, res) => {
 		});
 	}
 });
+// About page
+app.get("/about", async(req, res) => {
+	res.render("about");
+});
 
 // Delete course from database
 app.post("/delete", async(req, res) => {

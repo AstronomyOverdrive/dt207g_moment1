@@ -40,13 +40,14 @@
 					<td><%= course.progression %></td>
 					<td>
 						<form method="post" action="/delete">
-							<input type="text" name="code" value="<%= course.code %>" style="display: none;">
+							<input type="text" name="code" id="<%= course.code %>" value="<%= course.code %>" style="display: none;">
+							<label for="<%= course.code %>" style="display: none;">Ta bort kurs</label>
 							<input type="submit" class="delete-post" value="X">
 						</form>
 					</td>
 				</tr>
 				<% }) %>
-				<!-- -->
+				<!-- End EJS -->
 			</table>
 		</main>
 

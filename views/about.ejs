@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="sv">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>DT207G Moment1</title>
+		<link href="css/styles.css" rel="stylesheet">
+	</head>
+	<body>
+		<header>
+			<h1>DT207G Moment 1</h1>
+			<nav>
+				<ul>
+					<li>
+						<a href="/">Startsida</a>
+					</li>
+					<li>
+						<a href="/add">Lägg till</a>
+					</li>
+					<li id="active">
+						Om
+					</li>
+				</ul>
+			</nav>
+		</header>
+
+		<main>
+			<section>
+				<h2>Om webbplatsen:</h2>
+				<p>
+					Webbplatsen använder sig av en Express-server samt EJS för att kunna visa, lägga till &amp; ta bort kurser från en databas.<br>
+					Databasen är en MariaDB databas med server-version: <em>11.4.7-MariaDB-log Source distribution.</em><br>
+					För att ansluta till databasen används MySQL2 paketet från NPM.<br><br>
+					Syftet med uppgiften var att förstå hur serverbaserad utveckling fungerar samt sambandet mellan en server, databas och view engine.<br>
+					Uppgiften gick också ut på att praktiskt kunna skapa en webbplats där användaren kan skicka och läsa ut data från en databas.
+				</p>
+			</section>
+			<section>
+				<h2>Slutsatser:</h2>
+				<p>
+					Det har varit kul att faktiskt kunna använda en databas tillsammans med något istället för att bara skriva in SQL frågor i en terminal.<br>
+					Det tog en liten stund att vänja sig med MySQL2 med efter ett tag så gick allt bra, jag använde callbacks i denna uppgift men ska nog testa att använda promises i nästa.
+				</p>
+			</section>
+		</main>
+
+		<footer>
+			2025 William Pettersson
+		</footer>
+	</body>
+</html>

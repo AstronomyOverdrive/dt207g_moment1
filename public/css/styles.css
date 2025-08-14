@@ -142,9 +142,26 @@ fieldset input[type=button],
 }
 
 /* Error page */
-h2 {
+#error-box h2 {
 	text-align: center;
 	font-size: 5rem;
+}
+
+/* About page */
+section {
+	background: #282a36;
+	margin-top: 2rem;
+	margin-bottom: 2rem;
+	padding: 1rem;
+	border-radius: 1rem;
+	line-height: 1.3em;
+}
+section h2,
+section p {
+	margin: 0;
+}
+section h2 {
+	margin-bottom: 0.5rem;
 }
 
 /* Responsive design */
@@ -160,17 +177,27 @@ h2 {
 		width: calc(50% - 4rem);
 		margin-left: 25%;
 	}
+	/* About page */
+	section {
+		width: 60ch;
+		margin-left: calc(50% - 30ch - 1rem);
+	}
 }
 @media only screen and (orientation: portrait) {
 	/* Startpage */
 	table {
 		table-layout: fixed;
-		width: 100%;
-		margin-left: 0;
+		width: 90%;
+		margin-left: 5%;
 	}
 	/* Add course page */
 	fieldset {
 		width: calc(90% - 4rem);
+		margin-left: 5%;
+	}
+	/* About page */
+	section {
+		width: calc(90% - 2rem);
 		margin-left: 5%;
 	}
 }
