@@ -9,5 +9,6 @@ The server script will start a webserver where you can then view, add and remove
 - [Express](https://www.npmjs.com/package/express) is used as a webserver
 - [EJS](https://www.npmjs.com/package/ejs) is used as a view engine
 - [MySQL2](https://www.npmjs.com/package/mysql2) is used to communicate with database server
-The database uses the course code as a primary key.
+
+The database uses the course code as a primary key.<br><br>
 ![](https://raw.githubusercontent.com/AstronomyOverdrive/dt207g_moment1/refs/heads/main/relations.drawio.png)
